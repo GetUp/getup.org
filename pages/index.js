@@ -1,65 +1,39 @@
 import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import s from '../styles/Home.module.scss'
+// import img from '../public/images/screen.png'
+// import img from './images/scc.jpg'
 
-export default function Home() {
+export default function Home () {
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+    <>
+      <TopBar />
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
-    </div>
+      <div className={s.root}>
+        <main className={s.main}>
+          <div className={s.container}>
+            <div className={s.grid}>
+              <h1 className={`${s.displayOne} ${s.homeHeading}`}>
+                People. Power. Impact.
+              </h1>
+              <p className={`${s.bodyOne} ${s.bodyParagraph}`}>
+                Join over a million GetUp members fighting for a fair,
+                flourishing and just Australia.
+              </p>
+            </div>
+          </div>
+        </main>
+      </div>
+    </>
   )
 }
+
+const TopBar = () => (
+  <nav className={s.nav}>
+    <ul>
+      <li>Campaigns</li>
+      <li>Volunteer</li>
+      <li>Media</li>
+      <li>About</li>
+    </ul>
+  </nav>
+)
