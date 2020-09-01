@@ -1,50 +1,48 @@
 import Container from '../components/Container'
 import s from '../styles/Home.module.scss'
 import Card from '../components/Card'
+import { getGithubPreviewProps, parseJson } from 'next-tinacms-github'
+import { GetStaticProps } from 'next'
 
-export default function Home () {
+export default function Home ({ file }) {
+  const data = file.data
+
   return (
     <>
       <main className={s.main}>
-        <Hero />
-        <TakeActionNow />
+        <Hero data={data.hero} />
+        <TakeActionNow campaigns={data.takeActionNow} />
         <Values />
       </main>
     </>
   )
 }
 
-const Hero = () => {
-  const d = {
-    heading: 'People. Power. Impact.',
-    paragraph:
-      'Join over a million GetUp members fighting for a fair, flourishing and just Australia.',
-    inputLabel: 'Add your email to join!',
-    btn: 'Get involved!'
-  }
+const Hero = ({ data }) => {
+  const { heading, paragraph, inputLabel, btn } = data
 
   return (
     <Container className={s.root}>
       <div className={`grid ${s.header}`}>
-        <h1 className='display-1'>{d.heading}</h1>
-        <p className={`body-1 ${s.homeBody}`}>{d.paragraph}</p>
+        <h1 className='display-1'>{heading}</h1>
+        <p className={`body-1 ${s.homeBody}`}>{paragraph}</p>
         <form className={s.emailWrapper}>
-          <label for='email' className='a11y-hidden'>
+          <label htmlFor='email' className='a11y-hidden'>
             Email
           </label>
           <input
             id='email'
             type='email'
             className='body-2'
-            placeholder={d.inputLabel}
+            placeholder={inputLabel}
           />
           <button type='submit' className='body-4'>
-            {d.btn}
+            {btn}
           </button>
         </form>
         <div className={s.modal} style={{ display: 'none' }}>
           <form>
-            <h2 class='body-1'>Thanks for signing up!</h2>
+            <h2 className='body-1'>Thanks for signing up!</h2>
             <br />
             <br />
             <br />
@@ -61,38 +59,7 @@ const Hero = () => {
   )
 }
 
-const TakeActionNow = () => {
-  const values = [
-    {
-      imgSrc: 'https://picsum.photos/200',
-      tag: 'Fair Media',
-      header: 'Press Freedom is Under Attack',
-      paragraph:
-        'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illum, molestias laudantium. Deserunt nesciunt qui, quas dolorum iste.'
-    },
-    {
-      imgSrc: 'https://picsum.photos/200',
-      tag: 'Fair Media',
-      header: 'Press Freedom is Under Attack',
-      paragraph:
-        'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illum, molestias laudantium. Deserunt nesciunt qui, quas dolorum iste asperiores dignissimos explicabo ullam consequatur veniam exercitationem vitae eius. Quasi odit molestiae quia.'
-    },
-    {
-      imgSrc: 'https://picsum.photos/200',
-      tag: 'Fair Media',
-      header: 'Press Freedom is Under Attack',
-      paragraph:
-        'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illum, molestias laudantium. Deserunt nesciunt qui, quas dolorum iste asperiores dignissimos explicabo ullam consequatur veniam exercitationem vitae eius. Quasi odit molestiae quia.'
-    },
-    {
-      imgSrc: 'https://picsum.photos/200',
-      tag: 'Fair Media',
-      header: 'Press Freedom is Under Attack',
-      paragraph:
-        'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illum, molestias laudantium. Deserunt nesciunt qui, quas dolorum iste asperiores dignissimos explicabo ullam consequatur veniam exercitationem vitae eius. Quasi odit molestiae quia.'
-    }
-  ]
-
+const TakeActionNow = ({ campaigns }) => {
   return (
     <Container>
       <section className={s.takeActionWrapper}>
@@ -100,11 +67,12 @@ const TakeActionNow = () => {
         <a href='#'>More campaigns</a>
 
         <ul className={`grid`}>
-          {values.map(value => (
-            <li>
-              <Card {...value} />
-            </li>
-          ))}
+          {campaigns &&
+            campaigns.map(value => (
+              <li key={value.header}>
+                <Card {...value} />
+              </li>
+            ))}
           <li className='body-3'>
             <a href='#'>More campaigns</a>
             {/* Add an arrow */}
@@ -117,7 +85,7 @@ const TakeActionNow = () => {
 
 const Values = () => (
   <Container>
-    <section class={`grid ${s.values}`}>
+    <section className={`grid ${s.values}`}>
       <p className='display-4'>
         <strong>
           GetUp! is working towards a thriving democracy in Australia led by the
@@ -130,3 +98,24 @@ const Values = () => (
     </section>
   </Container>
 )
+
+export const getStaticProps = async function ({ preview, previewData }) {
+  if (preview) {
+    return getGithubPreviewProps({
+      ...previewData,
+      fileRelativePath: 'content/home.json',
+      parse: parseJson
+    })
+  }
+  return {
+    props: {
+      sourceProvider: null,
+      error: null,
+      preview: false,
+      file: {
+        fileRelativePath: 'content/home.json',
+        data: (await import('../content/home.json')).default
+      }
+    }
+  }
+}

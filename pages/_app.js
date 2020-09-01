@@ -16,10 +16,10 @@ export default class Site extends App {
           proxy: '/api/proxy-github',
           authCallbackRoute: '/api/create-github-access-token',
           clientId: process.env.GITHUB_CLIENT_ID,
-          baseRepoFullName: process.env.REPO_FULL_NAME
+          baseRepoFullName: process.env.REPO_FULL_NAME,
+          baseBranch: process.env.BASE_BRANCH
         })
       },
-
       sidebar: props.pageProps.preview,
       toolbar: props.pageProps.preview
     })
