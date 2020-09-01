@@ -74,7 +74,7 @@ const Hero = ({ data }) => {
     <Container className={s.root}>
       <div className={`grid ${s.header}`}>
         <h1 className='display-1'>
-          <InlineTextField name='hero.heading' />
+          <InlineTextarea name='hero.heading' />
         </h1>
         <p className={`body-1 ${s.homeBody}`}>
           <InlineTextarea name='hero.paragraph' />

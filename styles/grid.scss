@@ -4,20 +4,42 @@
   display: grid;
   gap: 0.75rem;
   grid-row-gap: 2rem;
-}
 
-@include breakpoint('medium') {
-  .grid {
+  @include breakpoint('medium') {
     gap: 1rem;
     grid-row-gap: 3rem;
     grid-template-columns: repeat(4, 1fr);
   }
-}
 
-@include breakpoint('large') {
-  .grid {
+  @include breakpoint('large') {
     gap: 1.5rem;
     grid-row-gap: 3.75rem;
     grid-template-columns: repeat(12, 1fr);
+  }
+
+  h1 {
+    text-align: left;
+    letter-spacing: -0.02em;
+    @media screen and (min-width: 600px) {
+      text-align: center;
+      grid-column: span 4;
+    }
+    @media screen and (min-width: 1024px) {
+      grid-column: 2 / span 10;
+    }
+  }
+
+  p {
+    font-size: var(--body-1);
+    line-height: 1.25;
+    text-align: left;
+
+    @include breakpoint('medium') {
+      text-align: center;
+      grid-column: span 4;
+    }
+    @include breakpoint('large') {
+      grid-column: 4 / span 6;
+    }
   }
 }
