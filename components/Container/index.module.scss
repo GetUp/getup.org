@@ -1,0 +1,14 @@
+.container {
+  padding-right: calc(
+    env(safe-area-inset-right) + var(--page-padding-horizontal)
+  );
+  padding-left: calc(
+    env(safe-area-inset-left) + var(--page-padding-horizontal)
+  );
+}
+
+.containerInner {
+  width: 100%;
+  max-width: 112.5rem;
+  margin: 0 auto;
+}

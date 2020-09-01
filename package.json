@@ -16,7 +16,10 @@
     "next-optimized-images": "^2.6.2",
     "react": "16.13.1",
     "react-dom": "16.13.1",
+    "responsive-loader": "^2.0.2",
     "sass": "^1.26.10",
+    "styled-components": "^5.1.1",
+    "tinacms": "^0.29.0",
     "webp-loader": "^0.6.0"
   }
 }

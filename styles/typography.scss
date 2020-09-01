@@ -1,0 +1,27 @@
+@use 'mixin' as *;
+
+html,
+body {
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+.display {
+  @include generate('display', 'font-size', 1, 4);
+}
+
+.heading {
+  @include generate('heading', 'font-size', 1, 4);
+}
+
+.body {
+  @include generate('body', 'font-size', 1, 4);
+}
+
+p {
+  line-height: 1.29;
+}
+*::selection {
+  color: black;
+  background: var(--color-yellow);
+}
