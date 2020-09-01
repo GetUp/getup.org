@@ -19,6 +19,7 @@
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-tinacms-github": "^0.29.0",
+    "react-tinacms-inline": "^0.29.0",
     "responsive-loader": "^2.0.2",
     "sass": "^1.26.10",
     "styled-components": "^5.1.1",

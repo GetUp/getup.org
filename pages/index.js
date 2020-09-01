@@ -3,17 +3,66 @@ import s from '../styles/Home.module.scss'
 import Card from '../components/Card'
 import { getGithubPreviewProps, parseJson } from 'next-tinacms-github'
 import { GetStaticProps } from 'next'
+import { usePlugin } from 'tinacms'
+import { useGithubJsonForm } from 'react-tinacms-github'
+import {
+  InlineForm,
+  InlineTextField,
+  InlineTextarea
+} from 'react-tinacms-inline'
 
 export default function Home ({ file }) {
-  const data = file.data
+  const formOptions = {
+    label: 'Home Page',
+    fields: [
+      {
+        name: 'hero',
+        component: 'group',
+        label: 'hero',
+        fields: [
+          { name: 'heading', component: 'text', label: 'Heading' },
+          { name: 'paragraph', component: 'text', label: 'Blurb' },
+          { name: 'inputLabel', component: 'text', label: 'Input Label' },
+          { name: 'btn', component: 'text', label: 'Button' }
+        ]
+      },
+      {
+        name: 'takeActionNow',
+        component: 'group-list',
+        label: 'Take Action Now',
+        description: 'Limit to 4 please',
+        itemProps: item => ({
+          key: item.header,
+          label: item.header
+        }),
+        defaultItem: () => ({
+          imgSrc: '',
+          tag: '',
+          header: '',
+          paragraph: ''
+        }),
+        fields: [
+          { name: 'imgSrc', component: 'text', label: 'Image' },
+          { name: 'tag', component: 'text', label: 'Tag' },
+          { name: 'header', component: 'text', label: 'Header' },
+          { name: 'paragraph', component: 'text', label: 'Paragraph' }
+        ]
+      }
+    ]
+  }
+
+  const [data, form] = useGithubJsonForm(file, formOptions)
+  usePlugin(form)
 
   return (
     <>
-      <main className={s.main}>
-        <Hero data={data.hero} />
-        <TakeActionNow campaigns={data.takeActionNow} />
-        <Values />
-      </main>
+      <InlineForm form={form}>
+        <main className={s.main}>
+          <Hero data={data.hero} />
+          <TakeActionNow campaigns={data.takeActionNow} />
+          <Values />
+        </main>
+      </InlineForm>
     </>
   )
 }
@@ -24,8 +73,12 @@ const Hero = ({ data }) => {
   return (
     <Container className={s.root}>
       <div className={`grid ${s.header}`}>
-        <h1 className='display-1'>{heading}</h1>
-        <p className={`body-1 ${s.homeBody}`}>{paragraph}</p>
+        <h1 className='display-1'>
+          <InlineTextField name='hero.heading' />
+        </h1>
+        <p className={`body-1 ${s.homeBody}`}>
+          <InlineTextarea name='hero.paragraph' />
+        </p>
         <form className={s.emailWrapper}>
           <label htmlFor='email' className='a11y-hidden'>
             Email
@@ -37,7 +90,7 @@ const Hero = ({ data }) => {
             placeholder={inputLabel}
           />
           <button type='submit' className='body-4'>
-            {btn}
+            <InlineTextField name='hero.btn' />
           </button>
         </form>
         <div className={s.modal} style={{ display: 'none' }}>
