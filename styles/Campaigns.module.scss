@@ -1,0 +1,23 @@
+.swiperContainer {
+  overflow: hidden;
+}
+
+.swiper {
+  display: flex;
+  background: orange;
+
+  li {
+    flex-shrink: 0;
+  }
+  li a {
+    text-decoration: none;
+    color: transparent;
+    -webkit-text-stroke: 1px black;
+    font-weight: 700;
+  }
+
+  li.active a {
+    -webkit-text-stroke: 0px;
+    color: black;
+  }
+}

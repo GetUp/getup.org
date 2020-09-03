@@ -34,7 +34,7 @@ export default class Site extends App {
           onLogout={onLogout}
           error={pageProps.error}
         >
-          <EditLink cms={this.cms} />
+          {/* <EditLink cms={this.cms} /> */}
           <Nav />
           <Component {...pageProps} />
           <Footer />

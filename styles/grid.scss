@@ -35,7 +35,6 @@
     text-align: left;
 
     @include breakpoint('medium') {
-      text-align: center;
       grid-column: span 4;
     }
     @include breakpoint('large') {

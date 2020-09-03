@@ -3,7 +3,7 @@
 @mixin generate($name, $attribute, $start, $end) {
   @for $i from $start through $end {
     &-#{$i} {
-      #{$attribute}: var(--#{$name}-#{$i});
+      #{$attribute}: var(--#{$name}-#{$i}) !important;
     }
   }
 }

@@ -3,13 +3,19 @@ import s from './index.module.scss'
 const Subnav = () => (
   <ul className={s.subNav}>
     <li className={s.active}>
-      <a href="#">Media releases</a>
+      <a className="body-3" href="#">
+        Media releases
+      </a>
     </li>
     <li>
-      <a href="#">Spokepeople</a>
+      <a className="body-3" href="#">
+        Spokepeople
+      </a>
     </li>
     <li>
-      <a href="#">Recent coverage</a>
+      <a className="body-3" href="#">
+        Recent coverage
+      </a>
     </li>
   </ul>
 )

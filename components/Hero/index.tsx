@@ -1,13 +1,15 @@
 import s from './index.module.scss'
 
-const Card = () => (
+interface HeroProps {
+  heading: string
+  blurb: string
+}
+
+const Hero = ({ heading, blurb }: HeroProps) => (
   <section className={`grid ${s.hero}`}>
-    <h1 className="display-3">News and Media</h1>
-    <p className="body-3">
-      GetUp works with the media to build a greater awareness of the issues we
-      care about and hold decision makers accountable in the public arena.
-    </p>
+    <h1 className="display-3">{heading}</h1>
+    <p className="body-2">{blurb}</p>
   </section>
 )
 
-export default Card
+export default Hero

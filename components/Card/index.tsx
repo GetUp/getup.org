@@ -1,10 +1,17 @@
 import s from './index.module.scss'
 
-export default ({ imgSrc, tag, header, paragraph }) => {
+interface CardProps {
+  imgSrc: String
+  tag: String
+  header: String
+  paragraph: String
+}
+
+const Card = ({ imgSrc, tag, header, paragraph }: CardProps) => {
   const multipleSizes = require('../../public/images/temp.jpg?resize&sizes[]=300&sizes[]=600&sizes[]=1000')
   return (
     <div className={s.container}>
-      <a href='#'>
+      <a href="#">
         <img
           srcSet={multipleSizes.srcSet}
           src={multipleSizes.src}
@@ -20,3 +27,5 @@ export default ({ imgSrc, tag, header, paragraph }) => {
     </div>
   )
 }
+
+export default Card
