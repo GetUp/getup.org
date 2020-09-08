@@ -4,9 +4,12 @@ import Nav from '../components/Nav'
 import Footer from '../components/Footer'
 import { TinaCMS, TinaProvider } from 'tinacms'
 import { GithubClient, TinacmsGithubProvider } from 'react-tinacms-github'
+import { ChakraProvider } from '@chakra-ui/core'
+import theme from '../theme'
 
 export default class Site extends App {
-  constructor (props) {
+  cms: TinaCMS
+  constructor(props) {
     super(props)
 
     this.cms = new TinaCMS({
@@ -17,15 +20,15 @@ export default class Site extends App {
           authCallbackRoute: '/api/create-github-access-token',
           clientId: process.env.GITHUB_CLIENT_ID,
           baseRepoFullName: process.env.REPO_FULL_NAME,
-          baseBranch: process.env.BASE_BRANCH
-        })
+          baseBranch: process.env.BASE_BRANCH,
+        }),
       },
       sidebar: props.pageProps.preview,
-      toolbar: props.pageProps.preview
+      toolbar: props.pageProps.preview,
     })
   }
 
-  render () {
+  render() {
     const { Component, pageProps } = this.props
     return (
       <TinaProvider cms={this.cms}>
@@ -34,10 +37,12 @@ export default class Site extends App {
           onLogout={onLogout}
           error={pageProps.error}
         >
-          {/* <EditLink cms={this.cms} /> */}
-          <Nav />
-          <Component {...pageProps} />
-          <Footer />
+          <ChakraProvider resetCSS theme={theme}>
+            {/* <EditLink cms={this.cms} /> */}
+            <Nav />
+            <Component {...pageProps} />
+            <Footer />
+          </ChakraProvider>
         </TinacmsGithubProvider>
       </TinaProvider>
     )
