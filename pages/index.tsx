@@ -85,7 +85,7 @@ const Hero = ({ data }) => {
         gridTemplateColumns="repeat(12, 1fr)"
         gridGap={['0.75rem', '1rem', '1.5rem']}
         gridRowGap={['2rem', '3.75rem', '4rem']}
-        background="primary"
+        background="primary.400"
         px={2}
         py={16}
       >
@@ -114,8 +114,8 @@ const Hero = ({ data }) => {
               width="100%"
               placeholder={inputLabel}
               size="lg"
-              backgroundColor="orange.500"
-              color="white"
+              backgroundColor="primary.500"
+              color="primary.200"
               _placeholder={{
                 color: 'white',
               }}
@@ -126,30 +126,6 @@ const Hero = ({ data }) => {
           </Stack>
         </FormControl>
       </Grid>
-      {/* <Container className={s.root}>
-        <div className={`grid ${s.header}`}>
-          <h1 className="display-1">
-            <InlineTextarea name="hero.heading" />
-          </h1>
-          <p className={`body-1 ${s.homeBody}`}>
-            <InlineTextarea name="hero.paragraph" />
-          </p>
-          <form className={s.emailWrapper}>
-            <label htmlFor="email" className="a11y-hidden">
-              Email
-            </label>
-            <input
-              id="email"
-              type="email"
-              className="body-2"
-              placeholder={inputLabel}
-            />
-            <button type="submit" className="body-4">
-              <InlineTextField name="hero.btn" />
-            </button>
-          </form>
-        </div>
-      </Container> */}
     </>
   )
 }
@@ -198,7 +174,7 @@ const TakeActionNow = ({ campaigns }) => {
 }
 
 const Values = () => (
-  <Container>
+  <Container className="">
     <section className={`grid ${s.values}`}>
       <p className="display-4">
         <strong>

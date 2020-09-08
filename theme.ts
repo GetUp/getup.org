@@ -3,11 +3,29 @@ import { merge } from '@chakra-ui/utils'
 
 const customTheme = merge(theme, {
   colors: {
-    primary: '#ff671f',
-    brand: {
-      900: '#1a365d',
-      800: '#153e75',
-      700: '#2a69ac',
+    primary: {
+      50: '#ffecdc',
+      100: '#ffcaaf',
+      200: '#ffa77e',
+      300: '#ff864c',
+      400: '#ff631a',
+      500: '#e64a00',
+      600: '#b43800',
+      700: '#812800',
+      800: '#4f1700',
+      900: '#210400',
+    },
+    secondary: {
+      50: '#def1ff',
+      100: '#afd3ff',
+      200: '#7db6ff',
+      300: '#4b99ff',
+      400: '#1a7cff',
+      500: '#0063e6',
+      600: '#004db4',
+      700: '#003782',
+      800: '#002151',
+      900: '#000b21',
     },
   },
   breakpoints: ['640px', '1024px'],
