@@ -1,22 +1,23 @@
 import s from './index.module.scss'
 
-const Subnav = () => (
+interface SubnavProps {
+  data: {
+    label: string
+    id: string
+    external?: boolean
+  }[]
+}
+
+const Subnav = ({ data }: SubnavProps) => (
   <ul className={s.subNav}>
-    <li className={s.active}>
-      <a className="body-3" href="#">
-        Media releases
-      </a>
-    </li>
-    <li>
-      <a className="body-3" href="#">
-        Spokepeople
-      </a>
-    </li>
-    <li>
-      <a className="body-3" href="#">
-        Recent coverage
-      </a>
-    </li>
+    {data &&
+      data.map((d) => (
+        <li className={s.active}>
+          <a className="body-3" href={'#' + d.id}>
+            {d.label}
+          </a>
+        </li>
+      ))}
   </ul>
 )
 
