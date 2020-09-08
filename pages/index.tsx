@@ -10,15 +10,8 @@ import {
   InlineTextField,
   InlineTextarea,
 } from 'react-tinacms-inline'
-import {
-  Grid,
-  Heading,
-  Text,
-  Input,
-  FormControl,
-  Button,
-  Stack,
-} from '@chakra-ui/core'
+import { Grid, Heading, Text, Input, FormControl, Stack } from '@chakra-ui/core'
+import Button from '../components/Button'
 
 export default function Home({ file }) {
   const formOptions = {
@@ -84,7 +77,7 @@ const Hero = ({ data }) => {
       <Grid
         gridTemplateColumns="repeat(12, 1fr)"
         gridGap={['0.75rem', '1rem', '1.5rem']}
-        gridRowGap={['2rem', '3.75rem', '4rem']}
+        gridRowGap={['2rem', '2.5rem', '3rem']}
         background="primary.400"
         px={2}
         py={16}
@@ -92,7 +85,7 @@ const Hero = ({ data }) => {
         <Heading
           as="h1"
           letterSpacing="tight"
-          gridColumn={['span 12', '2/span 10']}
+          gridColumn={['span 12', 'span 12', '2/span 10']}
           textAlign={['left', 'center']}
           fontSize="display-1"
           lineHeight="0.95"
@@ -101,28 +94,27 @@ const Hero = ({ data }) => {
           <InlineTextarea name="hero.heading" />
         </Heading>
         <Text
-          gridColumn={['span 12', '4/span 6']}
+          gridColumn={['span 12', 'span 12', '4/span 6']}
           color="white"
           fontSize="body-1"
           align={['left', 'center']}
         >
           <InlineTextarea name="hero.paragraph" />
         </Text>
-        <FormControl gridColumn={['span 12', '5/span 4']}>
-          <Stack direction={['column', 'row']}>
+        <FormControl gridColumn={['span 12', 'span 12', '5/span 4']}>
+          <Stack direction={['column', 'row']} justifyContent="center">
             <Input
               width="100%"
               placeholder={inputLabel}
               size="lg"
               backgroundColor="primary.500"
               color="primary.200"
+              maxWidth="18rem"
               _placeholder={{
                 color: 'white',
               }}
             />
-            <Button as="a" size="lg">
-              Get involved!
-            </Button>
+            <Button type="submit">Get involved!</Button>
           </Stack>
         </FormControl>
       </Grid>
