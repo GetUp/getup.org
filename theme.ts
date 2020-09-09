@@ -28,7 +28,7 @@ const customTheme = merge(theme, {
       900: '#000b21',
     },
   },
-  breakpoints: ['640px', '1024px'],
+  breakpoints: ['640px', '1024px', '1500px'],
 
   fonts: {
     body:
@@ -49,8 +49,8 @@ const customTheme = merge(theme, {
     '5xl': '48px',
     '6xl': '64px',
     'display-1': 'var(--display-1)',
-    'display-2': '3.4rem',
-    'display-3': '3.0rem',
+    'display-2': 'var(--display-2)',
+    'display-3': 'var(--display-3)',
     'display-4': 'var(--display-4)',
     'body-1': 'var(--body-1)',
     'body-2': 'var(--body-2)',

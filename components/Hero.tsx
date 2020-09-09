@@ -4,21 +4,39 @@ import { Grid, Text, Heading } from '@chakra-ui/core'
 interface HeroProps {
   heading: string
   blurb: string
+  backgroundColor?: string
 }
 
-const Hero = ({ heading, blurb }: HeroProps) => (
-  <>
-    {/* <section className={`grid ${s.hero}`}>
-      <h1 className="display-3">{heading}</h1>
-      <p className="body-2">{blurb}</p>
-    </section> */}
-    <Grid gridTemplateColumns="repeat(12, 1fr)" py="10rem" gridRowGap="4rem">
-      <Heading as="h1" gridColumn="2/span 10" textAlign={{ md: 'center' }}>
-        {heading}
-      </Heading>
-      <Text gridColumn="4/span 6">{blurb}</Text>
-    </Grid>
-  </>
+const Hero = ({
+  heading,
+  blurb,
+  backgroundColor = 'primary.400',
+}: HeroProps) => (
+  <Grid
+    gridTemplateColumns="repeat(12, 1fr)"
+    px={2}
+    py="10rem"
+    gridRowGap="3rem"
+    backgroundColor={backgroundColor}
+    color="white"
+  >
+    <Heading
+      as="h1"
+      gridColumn={['span 12', '2/span 10']}
+      textAlign={{ md: 'center' }}
+      fontSize="display-2"
+      lineHeight="1.05"
+    >
+      {heading}
+    </Heading>
+    <Text
+      gridColumn={['span 12', '2/span 10', '2/span 10', '4/span 6']}
+      fontSize="body-2"
+      mx="auto"
+    >
+      {blurb}
+    </Text>
+  </Grid>
 )
 
 export default Hero
