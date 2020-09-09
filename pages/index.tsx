@@ -183,19 +183,22 @@ const TakeActionNow = ({ campaigns }) => {
 }
 
 const Values = () => (
-  <Container className="">
-    <section className={`grid ${s.values}`}>
-      <p className="display-4">
-        <strong>
-          GetUp! is working towards a thriving democracy in Australia led by the
-          values and hopes of everyday people.
-        </strong>
-      </p>
-      <h2 className="heading-2">Fair</h2>
-      <h2 className="heading-2">Flourishing</h2>
-      <h2 className="heading-2">Just</h2>
-    </section>
-  </Container>
+  <Grid
+    maxWidth="100rem"
+    mx="auto"
+    p="calc(env(safe-area-inset-left) + var(--page-padding))"
+    background="secondary.400"
+  >
+    <Text fontSize="display-4" color="white" lineHeight="1.1">
+      <strong>
+        GetUp! is working towards a thriving democracy in Australia led by the
+        values and hopes of everyday people.
+      </strong>
+    </Text>
+    {/* <Heading as="h2" color="white">
+      Fair
+    </Heading> */}
+  </Grid>
 )
 
 export const getStaticProps = async function ({ preview, previewData }) {
