@@ -1,6 +1,6 @@
 import Container from '../components/Container'
 import s from '../styles/Home.module.scss'
-import Card from '../components/Card'
+import { Card, CardGroup } from '../components/Card'
 import { getGithubPreviewProps, parseJson } from 'next-tinacms-github'
 import { GetStaticProps } from 'next'
 import { usePlugin } from 'tinacms'
@@ -10,8 +10,24 @@ import {
   InlineTextField,
   InlineTextarea,
 } from 'react-tinacms-inline'
-import { Grid, Heading, Text, Input, FormControl, Stack } from '@chakra-ui/core'
-import Button from '../components/Button'
+import {
+  Grid,
+  Heading,
+  Text,
+  Input,
+  FormControl,
+  Stack,
+  Link,
+  List,
+  ListItem,
+  Button,
+  Box,
+  styled,
+  InterpolationWithTheme,
+  Flex,
+} from '@chakra-ui/core'
+import { FiArrowRight } from 'react-icons/fi'
+import NextLink from 'next/link'
 
 export default function Home({ file }) {
   const formOptions = {
@@ -114,7 +130,9 @@ const Hero = ({ data }) => {
                 color: 'white',
               }}
             />
-            <Button type="submit">Get involved!</Button>
+            <Button type="submit" colorScheme="secondary" size="lg">
+              Get involved!
+            </Button>
           </Stack>
         </FormControl>
       </Grid>
@@ -123,45 +141,44 @@ const Hero = ({ data }) => {
 }
 
 const TakeActionNow = ({ campaigns }) => {
+  const styles = {
+    container: {
+      alignItems: 'center',
+      gridTemplateColumns: '1fr max-content',
+      gridTemplateRows: 'repeat(3, max-content)',
+      p: 'var(--content-padding)',
+      px: 'calc(env(safe-area-inset-left) + var(--page-padding))',
+      maxWidth: '100rem',
+      m: '0 auto',
+    },
+  }
+
   return (
-    <Container className="">
-      <section className={s.takeActionWrapper}>
-        <h2 className="heading-1">Take action now</h2>
-        <a href="#" style={{ display: 'flex', fontWeight: 'bold' }}>
-          More campaigns
-          <svg
-            width="1em"
-            height="1em"
-            viewBox="0 0 16 16"
-            className="bi bi-arrow-right"
-            fill="currentColor"
-            xmlns="http://www.w3.org/2000/svg"
-            style={{ marginLeft: '0.125em' }}
+    <>
+      <Grid {...styles.container}>
+        <Heading as="h2" gridColumn="span 1">
+          Take action now
+        </Heading>
+        <NextLink href="/campaigns">
+          <Button
+            as="a"
+            variant="link"
+            colorScheme="secondary"
+            gridColumn="span 1"
+            order={[4, 2]}
+            justifyContent={['flex-start']}
           >
-            <path
-              fillRule="evenodd"
-              stroke="black"
-              strokeWidth="1"
-              d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"
-            />
-          </svg>
-        </a>
+            More campaigns
+            <Box as={FiArrowRight} size="20px" color="secondary.400" />
+          </Button>
+        </NextLink>
 
-        <ul className={`grid`}>
+        <CardGroup>
           {campaigns &&
-            campaigns.map((value) => (
-              <li key={value.header}>
-                <Card {...value} />
-              </li>
-            ))}
-          <li className="body-3">
-            <a href="#">More campaigns</a>
-
-            {/* Add an arrow */}
-          </li>
-        </ul>
-      </section>
-    </Container>
+            campaigns.map((value) => <Card {...value} key={value.header} />)}
+        </CardGroup>
+      </Grid>
+    </>
   )
 }
 
