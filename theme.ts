@@ -53,6 +53,8 @@ const customTheme = merge(theme, {
     'display-3': '3.0rem',
     'display-4': '2.6rem',
     'body-1': 'var(--body-1)',
+    'body-2': 'var(--body-2)',
+    'body-3': 'var(--body-3)',
   },
   fontWeights: {
     normal: 400,

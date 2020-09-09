@@ -17,28 +17,28 @@
     grid-template-columns: repeat(12, 1fr);
   }
 
-  h1 {
-    text-align: left;
-    letter-spacing: -0.02em;
-    @media screen and (min-width: 600px) {
-      text-align: center;
-      grid-column: span 4;
-    }
-    @media screen and (min-width: 1024px) {
-      grid-column: 2 / span 10;
-    }
-  }
+  // h1 {
+  //   text-align: left;
+  //   letter-spacing: -0.02em;
+  //   @media screen and (min-width: 600px) {
+  //     text-align: center;
+  //     grid-column: span 4;
+  //   }
+  //   @media screen and (min-width: 1024px) {
+  //     grid-column: 2 / span 10;
+  //   }
+  // }
 
-  p {
-    font-size: var(--body-1);
-    line-height: 1.25;
-    text-align: left;
+  // p {
+  //   font-size: var(--body-1);
+  //   line-height: 1.25;
+  //   text-align: left;
 
-    @include breakpoint('medium') {
-      grid-column: span 4;
-    }
-    @include breakpoint('large') {
-      grid-column: 4 / span 6;
-    }
-  }
+  //   @include breakpoint('medium') {
+  //     grid-column: span 4;
+  //   }
+  //   @include breakpoint('large') {
+  //     grid-column: 4 / span 6;
+  //   }
+  // }
 }
