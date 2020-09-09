@@ -24,7 +24,11 @@ const Campaigns = () => {
   ]
   return (
     <>
-      <Hero heading={data.heading} blurb={data.blurb} />
+      <Hero
+        heading={data.heading}
+        blurb={data.blurb}
+        backgroundColor='green.500'
+      />
       <Subnav data={subNav} />
       <div style={{ height: '4000px' }} />
     </>

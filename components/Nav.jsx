@@ -69,7 +69,7 @@ const Nav = () => {
           pr={8}
           display={['none', 'block']}
         />
-        <Button backgroundColor='pink'>Donate</Button>
+        <Button colorScheme='primary'>Donate</Button>
       </Flex>
     </Flex>
   )
