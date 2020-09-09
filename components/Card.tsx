@@ -8,6 +8,8 @@ import {
   Grid,
   InterpolationWithTheme,
   ListItem,
+  AspectRatio,
+  Tag,
 } from '@chakra-ui/core'
 
 interface CardProps {
@@ -33,11 +35,17 @@ export const Card = ({ imgSrc, tag, header, paragraph, href }: CardProps) => {
           role="group"
           _hover={{ textDecoration: 'none' }}
         >
-          <Stack>
-            <img srcSet={multipleSizes.srcSet} src={multipleSizes.src} />
-            <Badge width="fit-content" colorScheme="secondary">
+          <Stack spacing={3}>
+            <AspectRatio ratio={16 / 10}>
+              <img
+                srcSet={multipleSizes.srcSet}
+                src={multipleSizes.src}
+                style={{ objectFit: 'cover', borderRadius: '4px' }}
+              />
+            </AspectRatio>
+            <Tag width="fit-content" colorScheme="secondary">
               {tag}
-            </Badge>
+            </Tag>
             <Heading
               as="h3"
               lineHeight="1.1"

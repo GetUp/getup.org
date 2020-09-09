@@ -51,7 +51,7 @@ const customTheme = merge(theme, {
     'display-1': 'var(--display-1)',
     'display-2': '3.4rem',
     'display-3': '3.0rem',
-    'display-4': '2.6rem',
+    'display-4': 'var(--display-4)',
     'body-1': 'var(--body-1)',
     'body-2': 'var(--body-2)',
     'body-3': 'var(--body-3)',
