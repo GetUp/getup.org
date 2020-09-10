@@ -167,9 +167,14 @@ const TakeActionNow = ({ campaigns }) => {
             gridColumn="span 1"
             order={[4, 2]}
             justifyContent={['flex-start']}
+            textDecoration="underline"
+            cursor="pointer"
+            _hover={{
+              textDecoration: 'none',
+            }}
           >
             More campaigns
-            <Box as={FiArrowRight} size="20px" color="secondary.400" />
+            <Box as={FiArrowRight} size="20px" color="secondary.500" ml={1} />
           </Button>
         </NextLink>
 

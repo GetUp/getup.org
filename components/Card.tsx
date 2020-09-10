@@ -75,7 +75,7 @@ export const CardGroup = ({ children }) => {
           'repeat(12, 1fr)',
         ],
         gridGap: ['0.75rem', '1rem', '1.5rem'],
-        gridColumn: 'span 2',
+        gridColumn: 'span 12',
         marginTop: [4, 8],
         marginBottom: 4,
         order: 3,
