@@ -18,14 +18,26 @@ interface CardProps {
   header: string
   paragraph: string
   href: string
+  size?: string
 }
 
-export const Card = ({ imgSrc, tag, header, paragraph, href }: CardProps) => {
+export const Card = ({
+  imgSrc,
+  tag,
+  header,
+  paragraph,
+  href,
+  size = 'regular',
+}: CardProps) => {
   const multipleSizes = require('../public/images/temp.jpg?resize&sizes[]=300&sizes[]=600&sizes[]=1000')
 
   return (
     <ListItem
-      gridColumn={['span 2', 'span 2', 'span 3']}
+      gridColumn={
+        size === 'large'
+          ? ['span 2', 'span 4', 'span 6']
+          : ['span 2', 'span 2', 'span 3']
+      }
       css={{ scrollSnapAlign: 'start', minWidth: '85%' }}
     >
       <Flex alignItems="center" flexWrap="wrap">
@@ -33,6 +45,7 @@ export const Card = ({ imgSrc, tag, header, paragraph, href }: CardProps) => {
           href={href}
           isExternal
           role="group"
+          width="100%"
           _hover={{ textDecoration: 'none' }}
         >
           <Stack spacing={3}>
@@ -74,7 +87,8 @@ export const CardGroup = ({ children }) => {
           'repeat(4, 1fr)',
           'repeat(12, 1fr)',
         ],
-        gridGap: ['0.75rem', '1rem', '1.5rem'],
+        gridColumnGap: ['0.75rem', '1.5rem', '2rem'],
+        gridRowGap: ['4rem'],
         gridColumn: 'span 12',
         marginTop: [4, 8],
         marginBottom: 4,
