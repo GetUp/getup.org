@@ -24,18 +24,20 @@ import NextLink from 'next/link'
 import { FiArrowDown } from 'react-icons/fi'
 
 const Campaigns = ({ data }) => {
-  // const data = {
-  //   heading: 'All campaigns',
-  //   blurb:
-  //     'GetUp members set our movement’s agenda on issues they care about, in the fields of Environmental Justice, Human Rights, Economic Fairness and Democratic Integrity.',
-  // }
   const { heading, blurb } = data
 
   const [activePillar, setActivePillar] = useState('All campaigns')
   const [campaigns, setCampaigns] = useState(data.campaigns)
   const [backgroundColor, setBackgroundColor] = useState('primary.400')
 
-  const pillars = ['All campaigns', 'Environmental Justice', 'Fair Media', 'MX']
+  const pillars = [
+    'All campaigns',
+    'Environmental Justice',
+    'Economic Fairness',
+    'Fair Media',
+    'First Nations Justice',
+    'Human Rights',
+  ]
 
   const getBackgroundColor = (pillar) => {
     switch (pillar) {
@@ -43,8 +45,16 @@ const Campaigns = ({ data }) => {
         return 'primary.400'
       case 'Environmental Justice':
         return 'green.500'
+      case 'Economic Fairness':
+        return 'teal.500'
+      case 'First Nations Justice':
+        return 'red.600'
       case 'Fair Media':
         return 'purple.600'
+      case 'Human Rights':
+        return 'orange.600'
+      default:
+        return 'primary.400'
     }
   }
 
@@ -74,13 +84,7 @@ const Campaigns = ({ data }) => {
 
   return (
     <>
-      <Box background="purple.50">
-        {/* <Hero
-          heading={activePillar}
-          blurb={blurb}
-          backgroundColor={backgroundColor}
-        /> */}
-
+      <Box background="purple.50" pb={32}>
         <Grid
           gridTemplateColumns="repeat(12, 1fr)"
           px={2}
@@ -91,6 +95,7 @@ const Campaigns = ({ data }) => {
           borderBottomWidth={8}
           borderBottomStyle="solid"
           borderBottomColor="primary.400"
+          overflow="hidden"
         >
           <Box
             gridColumn={['span 12', '2/span 10']}
@@ -188,7 +193,9 @@ const Campaigns = ({ data }) => {
         <DefaultGrid mt={8}>
           <CardGroup>
             {campaigns &&
-              campaigns.map((value) => <Card {...value} key={value.header} />)}
+              campaigns.map((value) => (
+                <Card {...value} key={value.header} size={value.size} />
+              ))}
           </CardGroup>
         </DefaultGrid>
       </Box>
