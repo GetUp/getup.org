@@ -58,7 +58,12 @@ const Nav = () => {
           </Link>
         </NextLink>
         {navItems.map(n => (
-          <NavLink href={n.href} label={n.label} display={['none', 'block']} />
+          <NavLink
+            key={n.label}
+            href={n.href}
+            label={n.label}
+            display={['none', 'block']}
+          />
         ))}
       </Flex>
 

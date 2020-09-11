@@ -5,12 +5,16 @@ interface HeroProps {
   heading: string
   blurb: string
   backgroundColor?: string
+  borderBottom?: string
+  [x: string]: any
 }
 
 const Hero = ({
   heading,
   blurb,
   backgroundColor = 'primary.400',
+  borderBottom = 'primary.400',
+  ...props
 }: HeroProps) => (
   <Grid
     gridTemplateColumns="repeat(12, 1fr)"
@@ -19,6 +23,10 @@ const Hero = ({
     gridRowGap="3rem"
     backgroundColor={backgroundColor}
     color="white"
+    borderBottomWidth={8}
+    borderBottomStyle="solid"
+    borderBottomColor={borderBottom}
+    {...props}
   >
     <Heading
       as="h1"
