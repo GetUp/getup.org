@@ -5,6 +5,7 @@ import { TinaCMS, TinaProvider } from 'tinacms'
 import { GithubClient, TinacmsGithubProvider } from 'react-tinacms-github'
 import { ChakraProvider } from '@chakra-ui/core'
 import theme from '../theme'
+import Footer from '../components/Footer'
 
 export default class Site extends App {
   cms: TinaCMS
@@ -40,6 +41,7 @@ export default class Site extends App {
             {/* <EditLink cms={this.cms} /> */}
             <Nav />
             <Component {...pageProps} />
+            <Footer />
           </ChakraProvider>
         </TinacmsGithubProvider>
       </TinaProvider>
