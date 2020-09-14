@@ -138,7 +138,8 @@ const Campaign = ({ data }: CampaignProps) => {
                 pillars && pillars[_.findIndex(pillars, activePillar) - 1]?.slug
               }
             >
-              {pillars && pillars[_.findIndex(pillars, activePillar) - 1]?.slug}
+              {pillars &&
+                pillars[_.findIndex(pillars, activePillar) - 1]?.title}
             </StyledLink>
           </Heading>
           <Heading
@@ -177,7 +178,8 @@ const Campaign = ({ data }: CampaignProps) => {
                 pillars && pillars[_.findIndex(pillars, activePillar) + 2]?.slug
               }
             >
-              {pillars && pillars[_.findIndex(pillars, activePillar) + 2]?.slug}
+              {pillars &&
+                pillars[_.findIndex(pillars, activePillar) + 2]?.title}
             </StyledLink>
           </Heading>
         </Box>
@@ -238,7 +240,10 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     props: {
       key: uuid(),
       data: {
-        campaigns: campaigns.filter((d) => d.slug === params.slug),
+        campaigns:
+          params.slug === 'all'
+            ? campaigns
+            : campaigns.filter((d) => d.slug === params.slug),
         pillars: pillars,
         slug: params.slug,
       },
