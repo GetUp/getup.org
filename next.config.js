@@ -7,5 +7,14 @@ module.exports = withOptimizedImages({
     GITHUB_CLIENT_ID: process.env.GITHUB_CLIENT_ID,
     REPO_FULL_NAME: process.env.REPO_FULL_NAME,
     BASE_BRANCH: process.env.BASE_BRANCH
+  },
+  async redirects () {
+    return [
+      {
+        source: '/campaigns',
+        destination: '/campaigns/all',
+        permanent: true
+      }
+    ]
   }
 })

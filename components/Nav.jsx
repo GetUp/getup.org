@@ -6,7 +6,8 @@ const Nav = () => {
   const navItems = [
     {
       label: 'Campaigns',
-      href: '/campaigns'
+      href: '/campaigns/[slug]',
+      as: '/campaigns/all'
     },
     {
       label: 'Volunteer',
@@ -32,8 +33,8 @@ const Nav = () => {
     px: 4
   }
 
-  const NavLink = ({ href, label, ...props }) => (
-    <NextLink href={href}>
+  const NavLink = ({ href, as = '', label, ...props }) => (
+    <NextLink href={href} as={as}>
       <Link
         pl={8}
         fontSize='1.25rem'
@@ -63,6 +64,7 @@ const Nav = () => {
             href={n.href}
             label={n.label}
             display={['none', 'block']}
+            as={n?.as}
           />
         ))}
       </Flex>

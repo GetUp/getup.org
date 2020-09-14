@@ -1,0 +1,32 @@
+[
+  {
+    "title": "All campaigns",
+    "blurb": "We’re striving for a safe climate and thriving, vibrant natural world that future generations can enjoy for years to come. Our Environmental Justice campaigns hold the Government to account and demand clean energy and climate solutions that can keep us and our planet safe.",
+    "slug": "/campaigns/all"
+  },
+  {
+    "title": "Environmental Justice",
+    "blurb": "We’re striving for a safe climate and thriving, vibrant natural world that future generations can enjoy for years to come. Our Environmental Justice campaigns hold the Government to account and demand clean energy and climate solutions that can keep us and our planet safe.",
+    "slug": "/campaigns/environmental-justice"
+  },
+  {
+    "title": "Economic Fairness",
+    "blurb": "We believe in a society defined by social and economic equity, in which everyone has the opportunity to succeed. Our campaigns for Economic Fairness push for tangible, positive change such as increased funding for social housing, local job creation, and comprehensive government support during the coronavirus crisis. ",
+    "slug": "/campaigns/economic-fairness"
+  },
+  {
+    "title": "Fair Media",
+    "blurb": "We’re striving for a safe climate and thriving, vibrant natural world that future generations can enjoy for years to come. Our Environmental Justice campaigns hold the Government to account and demand clean energy and climate solutions that can keep us and our planet safe.",
+    "slug": "/campaigns/fair-media"
+  },
+  {
+    "title": "First Nations Justice",
+    "blurb": "We want to live in a country where everyone is treated with fairness and compassion — no matter where they’re from, how they worship, or who they love. GetUp members are fighting for progress on human rights issues including broader government assistance during the coronavirus crisis, racial justice, and an end to far-right extremism.",
+    "slug": "/campaigns/first-nations-justice"
+  },
+  {
+    "title": "Human Rights",
+    "blurb": "We want to live in a country where everyone is treated with fairness and compassion — no matter where they’re from, how they worship, or who they love. GetUp members are fighting for progress on human rights issues including broader government assistance during the coronavirus crisis, racial justice, and an end to far-right extremism.",
+    "slug": "/campaigns/human-rights"
+  }
+]
