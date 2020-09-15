@@ -15,6 +15,8 @@ import {
   MenuItem,
   Button,
   Icon,
+  InterpolationWithTheme,
+  useTheme,
 } from '@chakra-ui/core'
 import NextLink from 'next/link'
 import { FiArrowDown } from 'react-icons/fi'
@@ -71,22 +73,9 @@ const Campaign = ({ data }: CampaignProps) => {
     }
   }
 
-  const StyledLink = ({ href, children }) => (
-    <NextLink href="/campaigns/[slug]" as={href}>
-      <Link
-        as="a"
-        mx={4}
-        css={{
-          WebkitTextStroke: 'inherit',
-        }}
-        _hover={{
-          color: 'white',
-        }}
-      >
-        {children}
-      </Link>
-    </NextLink>
-  )
+  const findPillar = (pos: number) => {
+    return pillars[_.findIndex(pillars, activePillar) + pos]
+  }
 
   return (
     <>
@@ -102,120 +91,34 @@ const Campaign = ({ data }: CampaignProps) => {
         borderBottomColor="primary.400"
         overflow="hidden"
       >
+        <ChooseACampaign pillars={pillars} gridColumn="span 12" />
+
         <Box
           gridColumn={['span 12', '2/span 10']}
-          css={{
-            width: 'fit-content',
-            margin: '0 auto',
-            position: 'relative',
-          }}
+          width="fit-content"
+          m="0 auto"
+          position="relative"
         >
-          <Heading
-            as="h3"
-            css={{
-              position: 'absolute',
-              top: '0',
-              right: '100%',
-              color: 'transparent',
-              WebkitTextStroke: '1px white',
-              width: '1000vw',
-              textAlign: 'right',
-            }}
-            lineHeight="1.05"
-            fontSize="display-2"
-          >
-            <StyledLink
-              href={
-                pillars && pillars[_.findIndex(pillars, activePillar) - 2]?.slug
-              }
-            >
-              {pillars &&
-                pillars[_.findIndex(pillars, activePillar) - 2]?.title}
-            </StyledLink>
+          <StyledHeadingWrapper left={true}>
+            <StyledHeading pillar={findPillar(-2)} />
+            <StyledHeading pillar={findPillar(-1)} />
+          </StyledHeadingWrapper>
 
-            <StyledLink
-              href={
-                pillars && pillars[_.findIndex(pillars, activePillar) - 1]?.slug
-              }
-            >
-              {pillars &&
-                pillars[_.findIndex(pillars, activePillar) - 1]?.title}
-            </StyledLink>
-          </Heading>
-          <Heading
-            as="h1"
-            textAlign={{ md: 'center' }}
-            fontSize="display-2"
-            lineHeight="1.05"
-            mx={4}
-          >
-            {activePillar && activePillar.title}
-          </Heading>
-          <Heading
-            as="h3"
-            css={{
-              position: 'absolute',
-              top: '0',
-              left: '100%',
-              color: 'transparent',
-              WebkitTextStroke: '1px white',
-              width: '1000vw',
-            }}
-            lineHeight="1.05"
-            fontSize="display-2"
-          >
-            <StyledLink
-              href={
-                pillars && pillars[_.findIndex(pillars, activePillar) + 1]?.slug
-              }
-            >
-              {pillars &&
-                pillars[_.findIndex(pillars, activePillar) + 1]?.title}
-            </StyledLink>
+          <StyledHeading1>{activePillar && activePillar.title}</StyledHeading1>
 
-            <StyledLink
-              href={
-                pillars && pillars[_.findIndex(pillars, activePillar) + 2]?.slug
-              }
-            >
-              {pillars &&
-                pillars[_.findIndex(pillars, activePillar) + 2]?.title}
-            </StyledLink>
-          </Heading>
+          <StyledHeadingWrapper>
+            <StyledHeading pillar={findPillar(1)} />
+            <StyledHeading pillar={findPillar(2)} />
+          </StyledHeadingWrapper>
         </Box>
 
         <Box gridColumn={['span 12', '2/span 10', '2/span 10', '4/span 6']}>
           <Text fontSize="body-2" mx="auto">
             {activePillar.blurb}
           </Text>
-          <Menu>
-            <MenuButton
-              as={Button}
-              variant="outline"
-              colorScheme="white"
-              mt={4}
-              mx="auto"
-              display="flex"
-            >
-              Choose a campaign
-              <Icon as={FiArrowDown} size="20px" ml={1} />
-            </MenuButton>
-            <MenuList>
-              {pillars.map((p) => (
-                <NextLink href="#" key={p.slug}>
-                  <MenuItem
-                    as="a"
-                    color="black"
-                    onClick={() => setActivePillar(p)}
-                  >
-                    {p.title}
-                  </MenuItem>
-                </NextLink>
-              ))}
-            </MenuList>
-          </Menu>
         </Box>
       </Grid>
+
       <DefaultGrid mt={8}>
         <CardGroup>
           {campaigns &&
@@ -227,6 +130,87 @@ const Campaign = ({ data }: CampaignProps) => {
     </>
   )
 }
+
+const ChooseACampaign = ({ pillars, ...props }) => (
+  <Menu>
+    <MenuButton
+      as={Button}
+      variant="inline"
+      colorScheme="white"
+      mt={4}
+      mx="auto"
+      display="flex"
+      {...props}
+    >
+      Choose a campaign
+      <Icon as={FiArrowDown} size="20px" ml={1} />
+    </MenuButton>
+    <MenuList>
+      {pillars.map((p) => (
+        <NextLink href="/campaigns/[slug]" as={p.slug} key={p.slug}>
+          <MenuItem as="a" color="black">
+            {p.title}
+          </MenuItem>
+        </NextLink>
+      ))}
+    </MenuList>
+  </Menu>
+)
+
+const StyledHeadingWrapper = ({ children, left = false }) => (
+  <Box
+    position="absolute"
+    top="0"
+    width="1000vw"
+    right={left && '100%'}
+    left={!left && '100%'}
+    textAlign={left ? 'right' : 'left'}
+  >
+    {children}
+  </Box>
+)
+
+const StyledHeading1 = ({ children }) => (
+  <Heading
+    as="h1"
+    mx={4}
+    textAlign={{ md: 'center' }}
+    lineHeight="1.05"
+    fontSize="display-2"
+  >
+    {children}
+  </Heading>
+)
+
+const StyledHeading = ({ pillar }) => (
+  <Heading
+    as="h3"
+    color="transparent"
+    display="inline-block"
+    lineHeight="1.05"
+    fontSize="display-2"
+  >
+    {pillar && <StyledLink href={pillar.slug}>{pillar.title}</StyledLink>}
+  </Heading>
+)
+
+const StyledLink = ({ href, children }) => (
+  <NextLink href="/campaigns/[slug]" as={href}>
+    <Link
+      as="a"
+      mx={4}
+      fontSize="inherit"
+      css={{
+        WebkitTextStroke: '1px white',
+      }}
+      _hover={{
+        color: 'white',
+      }}
+    >
+      {children}
+    </Link>
+  </NextLink>
+)
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const fs = require('fs')
